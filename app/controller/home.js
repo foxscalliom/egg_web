@@ -5,7 +5,7 @@ const Controller = require('egg').Controller;
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    ctx.body = 'hi, egg';
+    await ctx.render('home.html')
   }
   async getGirls() {
     const { ctx } = this;
@@ -14,6 +14,17 @@ class HomeController extends Controller {
         resolve(ctx.body = 'hi girls');
       }, 200);
     });
+  }
+  async getUsers() {
+    const { ctx } = this;
+    const res = await ctx.service.users.getUsers('100');
+    ctx.body = res;
+  }
+  async testGetUsers() {
+    const { ctx } = this;
+    let id = ctx.query?.id;
+    const res = await ctx.service.users.getUsers(id); 
+    ctx.body = res;
   }
 }
 
