@@ -4,14 +4,16 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    const { ctx } = this;
+    const { ctx,app } = this;
     const username = ctx.session.username;
-    console.log(ctx.session.counter)
+    const session = ctx.session.counter;
     await ctx.render('home.html',{
       id:2021,
       name:'小红',
       age: 18,
       username: username,
+      session: session,
+      nowTime: app.currentTime(),
       skills:[
         '泰式按摩',
         '精油搓背',
