@@ -40,6 +40,17 @@ module.exports = appInfo => {
     maxAge: 1000 * 60, // 设置最大有效时间
     renew: true, // 页面有访问动作自动刷新session 
   };
+  config.mysql ={
+    app:true,     //是否挂载到app下面
+    agent:false,  //是否挂载到代理下面
+    client:{
+      host:'localhost',      // 数据库地址
+      prot:'3306',           // 端口
+      user:'root',           // 用户名
+      password:'12345678',    // 密码
+      database:'blog'    // 连接的数据库名称
+    }
+  }
   // config.middleware = ['counter']; // 中间件全局使用
   // add your user config here
   const userConfig = {
