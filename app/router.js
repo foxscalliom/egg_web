@@ -18,8 +18,8 @@ module.exports = app => {
   router.post('/editor', controller.home.editor);
   router.post('/show', controller.home.show);
   router.get('/newContext', controller.home.newContext);
-  // router.get("/addGirl", controller.girlManage.addGirl);
-  // router.get("/delGirl", controller.girlManage.delGirl);
-  // router.get("/updateGirl", controller.girlManage.updateGirl);
-  // router.get("/getGirls", controller.girlManage.getGirls);
+  router.get("/addGirl", controller.girlsManage.addGirl);
+  router.get("/delGirl", controller.girlsManage.delGirl);
+  router.get("/updateGirl", controller.girlsManage.updateGirl);
+  router.get("/getGirls", controller.girlsManage.getGirls);
 };
