@@ -89,8 +89,10 @@ class HomeController extends Controller {
   async newContext() {
     const {ctx} = this ; 
     const params = ctx.params();
-    console.log(params,'params')
-    ctx.body = 'newContext';
+    console.log(params,'params');
+    ctx.response.token='i100.xyz' // 设置请求头token
+    const testBase64 = ctx.helper.base64Encode('i100.xyz');
+    ctx.body = testBase64;
   }
 }
 
