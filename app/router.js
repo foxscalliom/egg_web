@@ -17,4 +17,5 @@ module.exports = app => {
   router.post('/del', controller.home.del);
   router.post('/editor', controller.home.editor);
   router.post('/show', controller.home.show);
+  router.post('/newContext',controller.home.newContext);
 };

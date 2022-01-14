@@ -13,7 +13,8 @@ class HomeController extends Controller {
       age: 18,
       username: username,
       session: session,
-      nowTime: app.currentTime(),
+      // nowTime: app.currentTime(),
+      nowTime: app.timeProp,
       skills:[
         '泰式按摩',
         '精油搓背',
@@ -84,6 +85,12 @@ class HomeController extends Controller {
         info: user
       }
     }
+  }
+  async newContext() {
+    const {ctx} = this ; 
+    const params = ctx.params();
+    console.log(params,'params')
+    ctx.body = 'newContext';
   }
 }
 

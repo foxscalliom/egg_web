@@ -3,8 +3,13 @@ module.exports = {
     currentTime() {
         const current = getTime();
         return current;
+    },
+    // 属性扩展
+    get timeProp() {
+        return getTime();
     }
 };
+// 封装时间方法
 function getTime() {
     let now = new Date();
     let year = now.getFullYear();
