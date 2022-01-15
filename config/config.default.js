@@ -8,6 +8,7 @@ module.exports = appInfo => {
    * @type {Egg.EggAppConfig}
    **/
   const config = exports = {};
+  // 配置数据库
   exports.mysql = {
     client: {
       host:'127.0.0.1',
@@ -19,7 +20,6 @@ module.exports = appInfo => {
     app: true,
     agent: false,
   };
-  
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1642146406688_4365';
 
@@ -29,12 +29,6 @@ module.exports = appInfo => {
     mapping: {
       ".html": "ejs"
     }
-  };
-  config.ejs = {
-    // delimiter: "$" // 修改模版配置符号%为$
-  };
-  config.static = {
-    // prefix:"/assets/" // 修改静态资源文件
   };
   config.security = {
     csrf: {
@@ -48,7 +42,6 @@ module.exports = appInfo => {
     renew: true, // 页面有访问动作自动刷新session 
   };
   // config.middleware = ['counter']; // 中间件全局使用
-  // add your user config here
   /**
    * 配置swagger
    * @property {String} dirScanner - 插件扫描的文档路径
@@ -66,71 +59,16 @@ module.exports = appInfo => {
    config.swaggerdoc = {
     dirScanner: './app/controller',
     apiInfo: {
-      title: 'egg-swagger',
-      description: 'swagger-ui for egg',
+      title: '百里博客接口文档',
+      description: '随着互联网的发展，越来越多的人拥有了自己的个人博客。',
       version: '1.0.0',
     },
     schemes: ['http'],
-    // consumes: ['application/json'],
-    // produces: ['application/json'],
-    securityDefinitions: {
-      // apikey: {
-      //   type: 'apiKey',
-      //   name: 'clientkey',
-      //   in: 'header',
-      // },
-      // oauth2: {
-      //   type: 'oauth2',
-      //   tokenUrl: 'http://petstore.swagger.io/oauth/dialog',
-      //   flow: 'password',
-      //   scopes: {
-      //     'write:access_token': 'write access_token',
-      //     'read:access_token': 'read access_token',
-      //   },
-      // },
-    },
-    // enableSecurity: false,
-    // enableValidate: true,
     routerMap: true,
     enable: true,
  
   };
-  const userConfig = {
-    // myAppName: 'egg',
-  };
   return {
-    ...config,
-    ...userConfig,
+    ...config
   };
 };
-// exports.swaggerdoc = {
-//   dirScanner: './app/controller',
-//   apiInfo: {
-//     title: 'egg-swagger',
-//     description: 'swagger-ui for egg',
-//     version: '1.0.0',
-//   },
-//   schemes: ['http', 'https'],
-//   consumes: ['application/json'],
-//   produces: ['application/json'],
-//   securityDefinitions: {
-//     // apikey: {
-//     //   type: 'apiKey',
-//     //   name: 'clientkey',
-//     //   in: 'header',
-//     // },
-//     // oauth2: {
-//     //   type: 'oauth2',
-//     //   tokenUrl: 'http://petstore.swagger.io/oauth/dialog',
-//     //   flow: 'password',
-//     //   scopes: {
-//     //     'write:access_token': 'write access_token',
-//     //     'read:access_token': 'read access_token',
-//     //   },
-//     // },
-//   },
-//   enableSecurity: false,
-//   // enableValidate: true,
-//   routerMap: false,
-//   enable: true,
-// };

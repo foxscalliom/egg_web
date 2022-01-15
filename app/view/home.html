@@ -8,55 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-    <% include header.html %>
-    <h2>现在由<%= id %>号技师，为你服务!</h2>
-    <h3>我的技能如下：</h3>
-    <ul>
-        <% for(let i = 0;i < skills.length;i++) {%>
-            <li><%= skills[i] %></>
-        <%}%>
-    </ul>
-    <h3>用户：<%=username%></h3>
-    <h3>用户：<%=nowTime%></h3>
-    <div>
-        <button onclick="add()">增加Cookie</button>
-        <button onclick="del()">删除Cookie</button>
-        <button onclick="editor()">修改Cookie</button>
-        <button onclick="show()">查看Cookie</button>
-    </div>
+    <h1>hi，egg</h1>
 </body>
 <script>
-    function add() {
-        fetch('/add',{
-            method: 'post',
-            headers: {
-                "Contnet-type": "application/json"
-            }
-        });
-    }
-    function del(){
-        fetch("/del",{
-            method:"post",
-            headers:{
-                "Content-type":"application/json"
-            }
-        });
-    }
-    function editor(){
-        fetch("/editor",{
-            method:"post",
-            headers:{
-                "Content-type":"application/json"
-            }
-        });
-    }
-    function show(){
-        fetch("/show",{
-            method:"post",
-            headers:{
-                "Content-type":"application/json"
-            }
-        });
-    }
 </script>
 </html> 

@@ -8,12 +8,10 @@ module.exports = app => {
     router,
     controller
   } = app;
-  const counter = app.middleware.counter();
-  // router.get('/', controller.home.index);
   //默认打开swagger
   router.redirect('/', '/swagger-ui.html',302);
-  router.get('/api/getGirls', counter, controller.home.getGirls);
-  router.post('/api/getUsers', counter, controller.home.getUsers);
-  router.get('/api/getNotes', counter, controller.notes.getNotes);
-  router.post('/api/addNotes', counter, controller.notes.addNotes);
+  router.get('/api/getGirls', controller.home.getGirls);
+  router.post('/api/getUsers', controller.home.getUsers);
+  router.get('/api/getNotes', controller.notes.getNotes);
+  router.post('/api/addNotes', controller.notes.addNotes);
 };
