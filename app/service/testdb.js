@@ -15,7 +15,7 @@ class testdbService extends Service {
     async getGirl() {
         try {
             const app = this.app;
-            const res = app.mysql.get('t_user');
+            const res = app.mysql.select('t_user');
             // await res.query(sql, values);
             return res
 
