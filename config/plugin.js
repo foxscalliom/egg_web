@@ -23,4 +23,8 @@ module.exports = {
       enable: true,
       package: 'egg-view-ejs',
   },
+  swaggerdoc: {
+    enable: true,   // 启用 swagger-ui 默认启用
+    package: 'egg-swagger-doc', // 指定 第三方插件 包名称
+  }
 };

@@ -1,26 +1,22 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-
+/**
+ *  笔记路由note
+ * @Controller 笔记
+*/
 class HomeController extends Controller {
-  async index() {
-    const { ctx,app } = this;
-    const username = ctx.session.username;
-    const session = ctx.session.counter;
-    await ctx.render('home.html',{
-      id:2021,
-      name:'小红',
-      age: 18,
-      username: username,
-      session: session,
-      // nowTime: app.currentTime(),
-      nowTime: app.timeProp,
-      skills:[
-        '泰式按摩',
-        '精油搓背',
-        '水疗SPA'
-      ]
-    })
+/**
+ * @summary 获取笔记
+ * @description 获取笔记
+ * @Router get /setNoteList
+ * @request query string username 账户名
+ * @request query integer page 页码 默认 1
+ * @request query integer pageSize 单页数量 默认 10
+ * @Request header string authorization token值
+* */
+   async index() {
+    this.ctx.body = 'hi, ' + this.app.plugins.swaggerdoc.name
   }
   async getGirls() {
     const { ctx } = this;

@@ -9,7 +9,9 @@ module.exports = app => {
     controller
   } = app;
   const counter = app.middleware.counter();
-  router.get('/', controller.home.index);
+  // router.get('/', controller.home.index);
+  //默认打开swagger
+  router.redirect('/', '/swagger-ui.html',302);
   router.get('/girls', counter, controller.home.getGirls);
   router.get('/getUsers', controller.home.getUsers);
   router.get('/testGetUsers', controller.home.testGetUsers);
