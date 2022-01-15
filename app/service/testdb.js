@@ -13,16 +13,16 @@ class testdbService extends Service {
     // 查询数据库
     // 查询数据库
     async getGirl() {
-        // try {
-            // const app = this.app;
-            // const res = await app.mysql.select('girls')
-            const res = await this.app.mysql
+        try {
+            const app = this.app;
+            const res = app.mysql.get('t_user');
+            // await res.query(sql, values);
             return res
 
-        // } catch (error) {
-        //     console.log(error)
-        //     return '无数据'
-        // }
+        } catch (error) {
+            console.log(error)
+            return '无数据'
+        }
     }
 }
 

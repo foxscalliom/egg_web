@@ -2,16 +2,23 @@
 
 'use strict';
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
 module.exports = appInfo => {
   /**
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
   const config = exports = {};
-
+  exports.mysql = {
+    client: {
+      host:'127.0.0.1',
+      port:'3306',
+      user:'root',
+      password:'123456789',
+      database:'blog'
+    },
+    app: true,
+    agent: false,
+  };
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1642146406688_4365';
 
@@ -40,17 +47,17 @@ module.exports = appInfo => {
     maxAge: 1000 * 60, // 设置最大有效时间
     renew: true, // 页面有访问动作自动刷新session 
   };
-  config.mysql = {
-    client: {
-      host: 'localhost',
-      port: '3306',
-      user: 'root',
-      password: '12345678',
-      database:'blog'
-    },
-    app: true,
-    agent: false,
-  }
+  // config.mysql ={
+  //   app:true,     //是否挂载到app下面
+  //   agent:false,  //是否挂载到代理下面
+  //   client:{
+  //     host:'127.0.0.1',      // 数据库地址
+  //     prot:'3306',           // 端口
+  //     user:'root',           // 用户名
+  //     password:'123456789',    // 密码
+  //     database:'blog'    // 连接的数据库名称
+  //   }
+  // };
   // config.middleware = ['counter']; // 中间件全局使用
   // add your user config here
   const userConfig = {
