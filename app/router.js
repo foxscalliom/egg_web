@@ -12,16 +12,6 @@ module.exports = app => {
   // router.get('/', controller.home.index);
   //默认打开swagger
   router.redirect('/', '/swagger-ui.html',302);
-  router.get('/girls', counter, controller.home.getGirls);
-  router.get('/getUsers', controller.home.getUsers);
-  router.get('/testGetUsers', controller.home.testGetUsers);
-  router.post('/add', controller.home.add);
-  router.post('/del', controller.home.del);
-  router.post('/editor', controller.home.editor);
-  router.post('/show', controller.home.show);
-  router.get('/newContext', controller.home.newContext);
-  router.get("/addGirl", controller.girlsManage.addGirl);
-  router.get("/delGirl", controller.girlsManage.delGirl);
-  router.get("/updateGirl", controller.girlsManage.updateGirl);
-  router.get("/getGirls", controller.girlsManage.getGirls);
+  router.get('/api/getGirls', counter, controller.home.getGirls);
+  router.post('/api/getUsers', counter, controller.home.getUsers);
 };

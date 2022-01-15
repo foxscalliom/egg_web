@@ -2,22 +2,19 @@
 
 const Controller = require('egg').Controller;
 /**
- *  笔记路由note
- * @Controller 笔记
-*/
+ * @controller HomeController
+ */
 class HomeController extends Controller {
-/**
- * @summary 获取笔记
- * @description 获取笔记
- * @Router get /setNoteList
- * @request query string username 账户名
- * @request query integer page 页码 默认 1
- * @request query integer pageSize 单页数量 默认 10
- * @Request header string authorization token值
-* */
    async index() {
     this.ctx.body = 'hi, ' + this.app.plugins.swaggerdoc.name
   }
+/**
+ * @summary 获取女孩
+ * @description 获取女孩信息
+ * @Router get /api/getGirls
+ * @request query string name 女孩名称
+ * @Request header string authorization token值
+* */
   async getGirls() {
     const { ctx } = this;
     console.log(ctx.session.counter)
@@ -27,6 +24,13 @@ class HomeController extends Controller {
       }, 200);
     });
   }
+  /**
+ * @summary 获取女孩
+ * @description 获取女孩信息
+ * @Router post /api/getUsers
+ * @request query string name 女孩名称
+ * @Request header string authorization token值
+* */
   async getUsers() {
     const { ctx } = this;
     const res = await ctx.service.users.getUsers('100');
