@@ -11,11 +11,11 @@ module.exports = appInfo => {
   // 配置数据库
   exports.mysql = {
     client: {
-      host:'127.0.0.1',
-      port:'3306',
-      user:'root',
-      password:'123456789',
-      database:'blog'
+      host: '127.0.0.1',
+      port: '3306',
+      user: 'root',
+      password: '123456789',
+      database: 'blog'
     },
     app: true,
     agent: false,
@@ -32,14 +32,34 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       enable: false,
-    }
+    },
+    domainWhiteList: ['*']
   };
-  
+  // 跨域配置
+  config.cors = {
+    origin: '*', // 表示允许的源
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH' // 表示允许的http请求方式
+  };
   config.session = {
     key: "PANG_SESS", // 设置Key的默认值
     httpOnly: true, // 设置服务端操作
     maxAge: 1000 * 60, // 设置最大有效时间
     renew: true, // 页面有访问动作自动刷新session 
+  };
+  config.middleware = [ 'errorHandler','tokenHandler' ];
+  // 中间件执行匹配开启
+  config.tokenHandler = {
+    match(ctx) { // 只匹配指定路由，反之如果只忽略指定路由，可以用ignore
+      //匹配不需要验证token的路由
+      const url = ctx.request.url;
+      if (url.startsWith('/login')) {
+        // ctx.logger.info('config.tokenHandler:','关闭token验证')
+        return false;
+      } else {
+        // ctx.logger.info('config.tokenHandler:','开启token验证')
+        return true; // 开启中间件，开启token验证
+      }
+    }
   };
   /**
    * 配置swagger
@@ -55,7 +75,7 @@ module.exports = appInfo => {
    * @property {Boolean} routeMap - 是否自动生成route
    * @property {Boolean} enable - swagger-ui是否可以访问
    */
-   config.swaggerdoc = {
+  config.swaggerdoc = {
     dirScanner: './app/controller',
     apiInfo: {
       title: '百里博客接口文档',
@@ -85,7 +105,9 @@ module.exports = {
     },
     json(err, ctx) {
       // json hander
-      ctx.body = { message: 'error' };
+      ctx.body = {
+        message: 'error'
+      };
       ctx.status = 500;
     },
     jsonp(err, ctx) {
@@ -93,5 +115,5 @@ module.exports = {
     },
   },
   // 通过中间件获取404页面
-  middleware: [ 'notfoundHandler' ],
+  middleware: ['notfoundHandler'],
 };
