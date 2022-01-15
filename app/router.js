@@ -14,4 +14,6 @@ module.exports = app => {
   router.redirect('/', '/swagger-ui.html',302);
   router.get('/api/getGirls', counter, controller.home.getGirls);
   router.post('/api/getUsers', counter, controller.home.getUsers);
+  router.get('/api/getNotes', counter, controller.notes.getNotes);
+  router.post('/api/addNotes', counter, controller.notes.addNotes);
 };
