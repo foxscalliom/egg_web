@@ -6,4 +6,5 @@ module.exports = app =>{
     router.get('/admin/getTypeInfo',auth,controller.admin.main.getTypeInfo);
     router.post('/admin/addArticle',auth,controller.admin.main.addArticle);
     router.post('/admin/updateArticle',auth,controller.admin.main.updateArticle);
+    router.get('/admin/getArtcleList',auth,controller.admin.main.getArtcleList);
 }

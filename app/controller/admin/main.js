@@ -65,6 +65,28 @@ class MainController extends Controller {
             status,
         }
     }
+    // 获取文章列表
+    async getArtcleList() {
+        let sql = `
+            select article.id as id,
+            article.title as title,
+            type.typeName as typeName 
+            from article left join type on article.typeId = type.id
+            order by article.id desc
+        `
+        try {
+            const res = await this.app.mysql.query(sql);
+            this.ctx.body = { 
+                status: true,
+                result: res
+             }
+        } catch (error) {
+            this.ctx.body = {
+                status: false,
+                result: error
+            }            
+        }
+    }
 }
 
 module.exports = MainController
