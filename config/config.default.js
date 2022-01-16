@@ -8,10 +8,10 @@ module.exports = appInfo => {
   config.middleware = [];
   config.mysql = {
     client: {
-      host: '127.0.0.1',
+      host: '149.28.51.32',
       port: '3306',
       user: 'root',
-      password: '123456789',
+      password: '123456',
       database: 'blog',
     },
     app: true,
