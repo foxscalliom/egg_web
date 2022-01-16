@@ -25,20 +25,38 @@ class HomeController extends Controller {
       status: true
     }
   }
+  // 获取文章详情
   async getArticleById() {
     let id = this.ctx.params.id;
-    console.log(id,'id');
+    console.log(id, 'id');
     let sql = ` SELECT * FROM article WHERE article.id = ${id}`
     const res = await this.app.mysql.query(sql);
-    this.ctx.body = { data: res };
+    this.ctx.body = {
+      data: res
+    };
   }
-  //  文章模糊查询
-  async query(auth) {
-    const TABLE_NAME = 'auth';
-    const QUERY_STR = 'id, authName, authValue, createTime, updateTime';
-    let sql = `select ${QUERY_STR} from ${TABLE_NAME} where authName like "%${auth.authName}%"`;
-    const row = await this.app.mysql.query(sql);
-    return row;
+  //获取类别名称和编号
+  async getTypeInfo() {
+    const result = await this.app.mysql.select('type')
+    this.ctx.body = {
+      data: result
+    }
+  }
+  //根据类别id获取文章类别
+  async getListByid() {
+    let id = this.ctx.params.id;
+    let sql = ` SELECT article.id as id,
+                article.title as title,
+                article.introduce as introduce,
+                article.created as created,
+                type.typeName as typeName
+                FROM article LEFT JOIN type ON article.typeId = type.Id
+                WHERE article.typeId = ${id}
+              `
+    const res = await this.app.mysql.query(sql);
+    this.ctx.body = {
+      data: res
+    };
   }
 }
 
