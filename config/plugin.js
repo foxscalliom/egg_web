@@ -1,15 +1,3 @@
-// // config/plugin.js
-// 'use strict';
-
-// module.exports.ejs = {
-//     enable: true,
-//     package: 'egg-view-ejs',
-// };
-
-// module.exports.mysql = {
-//   enable:true,
-//   package:'egg-mysql'
-// };
 'use strict';
 
 /** @type Egg.EggPlugin */
@@ -38,5 +26,9 @@ module.exports = {
   jwt: {
     enable: true,
     package: "egg-jwt"
-  }
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
+  },
 };

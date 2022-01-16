@@ -14,4 +14,5 @@ module.exports = app => {
   router.post('/api/getUsers', controller.home.getUsers);
   router.get('/api/getNotes', controller.notes.getNotes);
   router.post('/api/addNotes', controller.notes.addNotes);
+  router.resources('users', '/users', controller.users);
 };
