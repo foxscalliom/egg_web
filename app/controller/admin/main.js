@@ -40,7 +40,12 @@ class MainController extends Controller {
             }
         }
     }
-
+    // 获取文章类别的接口
+    async getTypeInfo() {
+        const res = await this.app.mysql.select('type');
+        console.log(res,'res');
+        this.ctx.body = { data: res };
+    }
 }
 
 module.exports = MainController
