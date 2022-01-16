@@ -66,10 +66,11 @@ class MainController extends Controller {
         }
     }
     // 获取文章列表
-    async getArtcleList() {
+    async getArticleList() {
         let sql = `
             select article.id as id,
             article.title as title,
+            article.created as created,
             type.typeName as typeName 
             from article left join type on article.typeId = type.id
             order by article.id desc
@@ -85,6 +86,36 @@ class MainController extends Controller {
                 status: false,
                 result: error
             }            
+        }
+    }
+    // 删除文章
+    async delArticle() {
+        let id = this.ctx.params.id;
+        try {
+            const res = await this.app.mysql.delete('article',{'id':id});
+            this.ctx.body = { result: res, status: true };
+        } catch (error) {
+            this.ctx.body = { result: error, status: false };
+        }
+    }
+    // 根据文章id查询文章详情，用于修改文章
+    async getArticleById() {
+        let id = this.ctx.params.id;
+        let sql = `
+        select article.id as id,
+        article.title as title,
+        article.created as created,
+        article.viewCount as viewCount,
+        type.typeName as typeName, 
+        type.id as typeId
+        from article left join type on article.typeId = type.id
+        where article.id = ${id} 
+        `
+        try {
+            const res = await this.app.mysql.query(sql);
+            this.ctx.body = { result: res, status: true };
+        } catch (error) {
+            this.ctx.body = { result: error, status: false };
         }
     }
 }
