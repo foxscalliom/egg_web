@@ -46,6 +46,25 @@ class MainController extends Controller {
         console.log(res,'res');
         this.ctx.body = { data: res };
     }
+    // 添加文章
+    async addArticle() {
+        let tmpActicle = this.ctx.request.body;
+        const res = await this.app.mysql.insert('article',tmpActicle);
+        const isTrue = res.insertId;
+        this.ctx.body = {
+            status: isTrue,
+            result: res
+        }
+    }
+    // 编辑文章
+    async updateArticle() {
+        let tmpActicle = this.ctx.request.body;
+        const res = await this.app.mysql.update('article',tmpActicle);
+        const status = res.affectedRows === 1
+        this.ctx.body = {
+            status,
+        }
+    }
 }
 
 module.exports = MainController
