@@ -11,9 +11,16 @@ module.exports = appInfo => {
       host: '149.28.51.32',
       port: '3306',
       user: 'root',
-      password: '123456',
+      password: 'MyNewPass4!',
       database: 'blog',
     },
+    // client: {
+    //   host: 'localhost',
+    //   port: '3306',
+    //   user: 'root',
+    //   password: '123456789',
+    //   database: 'blog',
+    // },
     app: true,
     agent: false,
   };
